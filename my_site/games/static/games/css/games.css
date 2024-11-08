@@ -1,0 +1,32 @@
+body {
+    color: black;
+}
+.games-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.container h1 {
+    color: white;
+}
+
+.game-item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 50px 20px;
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    background: #e4e4e4
+
+}
+
+.game-item h3 {
+    margin-top: 0;
+
+}
+
+.game-item p {
+    margin-bottom: 0;
+}

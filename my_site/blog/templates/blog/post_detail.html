@@ -1,0 +1,87 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+  <!-- Структура поста -->
+<!-- Подключение Font Awesome -->
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" style="color:black" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
+        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+
+        {% if object.author == user %}
+          <div>
+            <a class="btn btn-success btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Редактировать</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Удалить</a>
+          </div>
+        {% endif %}
+      </div>
+      <h2 class="article-title">{{ object.title|safe }}</h2>
+      <p class="article-content">{{ object.content|safe }}</p> <!--  |safe чтобы применить изменения для текста!!-->
+    </div>
+  </article>
+
+  <!-- Секция комментариев -->
+  <section class="comment-section">
+    <h3> <div style="color: white">Комментарии</div> </h3>
+    <ul>
+      {% for comment in object.comments.all %}
+      <li class="media my-4" style="background: white; border-radius: 10px;">
+        <img class="rounded-circle article-img" style=" margin-left: 20px; margin-top:10px; margin-bottom:10px;" src="{{ comment.author.profile.image.url }}" alt="{{ comment.author.username }}">
+        <div class="media-body ml-3" style="margin-top: 5px;"> <!-- вверх секции коммента -->
+          <strong>{{ comment.author }}:</strong> {{ comment.content|safe }}
+          <br>
+          <small class="text-muted">{{ comment.created_at|date:"F d, Y, H:i" }}</small>
+
+          <!-- Секция лайков комментариев -->
+          {% if user.is_authenticated %}
+            <button class="like-comment-button btn" data-comment-id="{{ comment.id }}">
+              {% if user in comment.likes.all %}
+                <i class="fa-solid fa-heart text-danger"></i> <!-- Заполненное сердечко -->
+              {% else %}
+                <i class="fa-regular fa-heart"></i> <!-- Пустое сердечко -->
+              {% endif %}
+              <span class="likes-count" style="float: right;">{{ comment.likes.count }}</span>
+            </button>
+
+          {% else %}
+            <p> <div style="color: white"> Только зарегистрированные пользователи могут лайкать комментарии. </div> </p>
+          {% endif %}
+        </div>
+        {% if user == comment.author %}
+  <button class="delete-comment-button btn btn-danger btn-sm" data-comment-id="{{ comment.id }}">
+    Удалить
+  </button>
+{% endif %}
+      </li>
+      {% empty %}
+      <li>Комментариев пока нет.</li>
+      {% endfor %}
+    </ul>
+
+    <!-- Форма добавления комментария -->
+    {% if user.is_authenticated %}
+    <div class="comment-form">
+      <h4> <div style="color: white"> Добавить комментарий: </div> </h4>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.content.as_widget }} <br>
+        <button class="btn btn-primary"  type="submit">Отправить</button>
+
+
+      </form>
+    </div>
+    {% else %}
+    <p><div style="color: white"> Только зарегистрированные пользователи могут лайкать комментарии. </div> <a href="{% url 'login' %}">Войдите</a> <div style="color: white"> или </div> <a href="{% url 'register' %}">зарегистрируйтесь</a>.</p>
+    {% endif %}
+  </section>
+{% block script %}
+    {{ block.super }}
+    <script  src="{% static 'blog/js/post_detail.js' %}"> </script>
+{% endblock %}
+{% endblock content %}

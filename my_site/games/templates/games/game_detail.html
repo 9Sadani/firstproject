@@ -1,0 +1,52 @@
+<!-- game_detail.html -->
+{% extends "blog/base.html" %}
+{% load static %}
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'games/css/game_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ game.name }}</h1>
+    <div class="game-container">
+        <div class="game-board" id="board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+
+
+
+        <!-- Scoreboard on the right -->
+        <div class="scoreboard">
+             <input type="text" id="searchInput" placeholder="Поиск игроков..." class="form-control mb-2" />
+            <h3>Игроки</h3>
+            <ul id="user-list" class="list-group" style="max-height: 150px; overflow-y: auto; background-color: #333333;">
+            {% for player in players_data %}
+                <li class="list-group-item user-item">
+                    <img src="{{ player.avatar }}" alt="{{ player.username }}" class="rounded-circle" width="35">
+                    <strong>{{ player.username }}</strong>: {{ player.score }} очков
+                </li>
+            {% empty %}
+                <li>Нет данных</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div id="status">Ваш ход!</div>
+    <button id="restartButton" style="display: none;">Начать заново</button>
+</div>
+
+<script>
+    const gameId = {{ game.id }};
+</script>
+<script src="{% static 'games/js/game_detail.js' %}"></script>
+{% endblock %}

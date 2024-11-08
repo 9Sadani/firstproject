@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'games/css/games.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Мини-Игры</h1>
+    <div class="games-list">
+        {% for game in games %}
+            <div class="game-item">
+                <h3><a href="{% url 'game_detail' game.id %}">{{ game.name }}</a></h3>
+                <p>{{ game.description|safe }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

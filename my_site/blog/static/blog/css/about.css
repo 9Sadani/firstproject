@@ -1,0 +1,78 @@
+ /*  ДЛЯ ID # ДЛЯ CLASS ТОЧКА */
+
+
+    #smile-window{
+      border-radius: 10px;
+       display: none;
+        border: 1px solid #ddd;
+        padding: 10px;
+        width: auto; /* Ширина окна будет адаптивной */
+        max-width: 150px; /* Ограничиваем максимальную ширину */
+        position: absolute;
+        background-color: white;
+        z-index: 1000;
+
+        grid-gap: 10px; /* Расстояние между эмодзи */
+    }
+    .smile {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+        cursor: pointer;
+
+     }
+
+
+
+    /* Изменяем размер заголовка пользователей */
+    .users-title {
+      font-size: 1.2rem;
+
+    }
+
+    /* Добавляем отступ между списком пользователей и чатом */
+    .list-group {
+      margin-bottom: 20px;
+    }
+
+    /* Стили для сообщений */
+    .message {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 15px;
+      max-width: 70%;
+
+    }
+    .message-left {
+      background-color: #D3D3D3;
+      text-align: left;
+      float: left;
+      clear: both;
+    }
+    .message-right {
+      background-color: #00BFFF;
+      color: white;
+      text-align: right;
+      float: right;
+      clear: both;
+    }
+
+    /* Стили для чата */
+    #chat-header img {
+      margin-right: 10px;
+    }
+    #chat-with-user {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .delete-message {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 1.5rem;
+    cursor: pointer;
+    }
+    .delete-message:hover {
+    color: darkred;
+    }

@@ -1,0 +1,135 @@
+body {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    }
+#status {
+    color:white;
+    }
+
+h1, h3{
+    color: white;
+    }
+
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 10px;
+    margin-right: 20px; /* Отступ справа от поля */
+}
+
+.scoreboard {
+    width: 200px;
+    padding: 10px;
+
+    border: 1px solid #ddd;
+}
+
+.scoreboard h3 {
+    margin-top: 0;
+}
+
+.scoreboard ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    background-color: #fff;
+    border: 2px solid #333;
+    cursor: pointer;
+}
+.cell.disabled {
+    pointer-events: none;
+}
+#status {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+
+#restartButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #369;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#restartButton:hover {
+    background-color: #256;
+}
+
+
+.scoreboard {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #2c2c2c; /* Dark background for contrast */
+    color: white;
+    margin-left: 20px; /* Space between board and scoreboard */
+}
+
+.scoreboard h3 {
+    margin-top: 0;
+}
+
+.scoreboard ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.scoreboard .list-group {
+    width: 100%; /* Expands the list to take full width of the parent container */
+    max-width: 250px; /* Adjust this as needed to control the maximum width */
+    margin: 0 auto; /* Centers the list within the scoreboard */
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.list-group {
+    max-height: 200px;
+    overflow-y: auto;
+
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+    background: #333333;
+    padding: 10px;
+    width: 100%;
+}
+
+.rounded-circle {
+    border-radius: 30%;
+    margin-right: 5px;
+}
+
+#user-list {
+    max-height: 150px; /* Высота для отображения около трех элементов */
+    overflow-y: auto;  /* Включение прокрутки по вертикали */
+}

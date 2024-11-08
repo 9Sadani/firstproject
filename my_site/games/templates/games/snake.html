@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'games/css/snake.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="game-container">
+    <div id="gameArea">
+        <canvas id="snakeGame"></canvas>
+        <div id="scoreBoard">Счет: <span id="score">0</span></div>
+        <h3> Уровень сложности </h3>
+        <div id="difficultyButtons">
+            <button class="difficulty" data-speed="150" data-points="1">Легкий</button>
+            <button class="difficulty" data-speed="100" data-points="2">Средний</button>
+            <button class="difficulty" data-speed="70" data-points="3">Сложный</button>
+        </div>
+        <button id="startButton">Начать игру</button>
+        <div id="gameOver" class="hidden">
+            <p>Игра окончена!</p>
+            <p>Ваш счет: <span id="finalScore"></span></p>
+            <button id="restartButton">Начать заново</button>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'games/js/snake.js' %}"></script>
+{% endblock %}

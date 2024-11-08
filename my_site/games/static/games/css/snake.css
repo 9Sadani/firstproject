@@ -1,0 +1,92 @@
+#gameArea {
+    position: relative;
+}
+
+canvas {
+    border: 2px solid #000;
+    background-color: black;
+}
+
+#scoreBoard {
+    margin-top: 10px;
+    font-size: 20px;
+    color: white;
+}
+
+
+h3 {
+    color: white;
+}
+
+#startButton{
+     margin-left: 20%;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: border 1s;
+
+}
+
+.hidden {
+    display: none;
+}
+
+#gameOver {
+    position: absolute;
+    top: 30%;
+    left: 28%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border: 2px solid #000;
+}
+
+.snake {
+    fill: green;
+}
+
+.food {
+    fill: red;
+}
+
+.eye {
+    fill: white;
+}
+
+.pupil {
+    fill: black;
+}
+
+.tongue {
+    fill: pink;
+}
+button#startButton {
+    background-color: #007BFF; /* Синий цвет для кнопки "Начать игру" */
+    color: white;
+}
+
+button.difficulty {
+    color: white;
+}
+
+button.difficulty[data-speed="150"] {
+    background-color: #28A745; /* Зеленый для легкого уровня */
+}
+
+button.difficulty[data-speed="100"] {
+    background-color: #FFC107; /* Желтый для среднего уровня */
+}
+
+button.difficulty[data-speed="70"] {
+    background-color: #DC3545; /* Красный для сложного уровня */
+}
+button.difficulty.selected {
+    border: 3px solid white; /* Белая рамка для выбранной кнопки */
+}

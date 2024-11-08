@@ -1,0 +1,83 @@
+﻿{% extends "blog/base.html" %}
+{% load static %}
+{% block style%}
+    {{ block.super }}
+     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+  <input type="hidden"  value="{{user.username}}" id="current-username">
+  <!-- Подключение Font Awesome -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <!-- Основная структура страницы с личными сообщениями -->
+  <div class="row">
+    <!-- Список пользователей -->
+    <div class="col-md-3">
+      <!-- Список всех пользователей сайта -->
+      <h4 class="users-title" style="color: white">Пользователи сайта</h4>
+      <input type="text" id="search-users" class="form-control" placeholder="Поиск" style="margin-bottom: 10px;">
+      <ul class="list-group" id="user-list" style="max-height: 200px; overflow-y: auto;">
+        {% for user in users %}
+          <li class="list-group-item user-item" data-user-id="{{ user.id }}" data-avatar-url="{{ user.profile.image.url }}">
+            <img class="rounded-circle" src="{{ user.profile.image.url }}" alt="{{ user.username }}" width="35">
+            <strong>{{ user.username }}</strong>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <!-- Подписки -->
+         <h4 class="users-title" style="margin-top: 20px; color: white ">Ваши подписки</h4>
+    <input type="text" id="search-followed-users" class="form-control" placeholder="Поиск" style="margin-bottom: 10px;">
+    <ul class="list-group" id="followed-users-list" style="max-height: 200px; overflow-y: auto;">
+      {% if followed_users %}
+        {% for user in followed_users %}
+          <li class="list-group-item user-item" data-user-id="{{ user.following.id }}" data-avatar-url="{{ user.following.profile.image.url }}">
+            <img class="rounded-circle" src="{{ user.following.profile.image.url }}" alt="{{ user.following.username  }}" width="35">
+            <strong>{{ user.following.username  }}</strong>
+          </li>
+        {% endfor %}
+      {% else %}
+        <li class="list-group-item">Нет подписок</li>
+      {% endif %}
+    </ul>
+    </div>
+
+    <!-- Окно с чатом -->
+    <div class="col-md-9 chat-section" style="display: none; background: white">
+      <div id="chat-header" class="d-flex align-items-center mb-3">
+        <img id="chat-avatar" class="rounded-circle" style="margin-top: 10px" src="" alt="Аватар" width="60">
+        <h4 id="chat-with-user" class="mb-0 ml-3" ></h4>
+      </div>
+      <div id="chat-window" style="border: 2px solid #ddd; padding: 10px; height: 400px; overflow-y: auto;">
+        <!-- Здесь будут загружаться сообщения -->
+      </div>
+
+      <!-- Форма отправки сообщения -->
+      <div class="message-form mt-3">
+        <textarea id="message-content" class="form-control" rows="3" placeholder="Введите ваше сообщение..."></textarea>
+        <button id="send-message" style="margin-bottom: 10px"  class="btn btn-primary mt-2">Отправить</button>
+        <i class="fa-regular fa-face-smile" id="toggle-smile-window" style="cursor: pointer;"></i>
+            <div id="smile-window">
+                  <div class = 'smile' my-data-smile = '&#128512;'>&#128512;</div>
+                  <div class = 'smile' my-data-smile = '&#128517;'>&#128517;</div>
+                  <div class = 'smile' my-data-smile = '&#128554;'>&#128554;</div>
+                  <div class = 'smile' my-data-smile = '&#129397;'>&#129397;</div>
+                  <div class = 'smile' my-data-smile = '&#128516;'>&#128516;</div>
+                  <div class = 'smile' my-data-smile = '&#129315;'>&#129315;</div>
+                  <div class = 'smile' my-data-smile = '&#128579;'>&#128579;</div>
+                  <div class = 'smile' my-data-smile = '&#128521;'>&#128521;</div>
+                  <div class = 'smile' my-data-smile = '&#128522;'>&#128522;</div>
+                  <div class = 'smile' my-data-smile = '&#129392;'>&#129392;</div>
+                  <div class = 'smile' my-data-smile = '&#128540;'>&#128540;</div>
+                  <div class = 'smile' my-data-smile = '&#129320;'>&#129320;</div>
+                  <div class = 'smile' my-data-smile = '&#128528;'>&#128528;</div>
+            </div>
+      </div>
+    </div>
+  </div>
+{% block script %}
+    {{ block.super }}
+    <script  src="{% static 'blog/js/about.js' %}"> </script>
+{% endblock %}
+{% endblock content %}

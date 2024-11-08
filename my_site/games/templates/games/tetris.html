@@ -1,0 +1,48 @@
+
+{% extends "blog/base.html" %}
+{% load static %}
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'games/css/tetris.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ game.name }}</h1>
+
+        <div id="game-container">
+	<div id="board-container">
+		<canvas id="tetris-board" width="300" height="600"></canvas>
+	</div>
+	<div id="controls">
+		<div id="score">Счет: <span id="score-value">0</span></div>
+		<div id="next-piece-container">
+			<h3>Следующая фигура:</h3>
+			<canvas id="next-piece" width="120" height="120"></canvas>
+		</div>
+		<div class="d-pad">
+			<div id="left" class="d-pad-button">&#9664;</div>
+			<div id="right" class="d-pad-button">&#9654;</div>
+			<div id="down" class="d-pad-button">&#9660;</div>
+			<div id="rotate" class="d-pad-button">R</div>
+		</div>
+		<button id="start-button">Начать игру</button>
+		<div id="instructions">
+			Используйте клавиши со стрелками для перемещения.<br>
+			Нажмите, "R" или "0" для поворота фигуры.
+		</div>
+		<div id="music-control">
+			<label>
+				<input type="checkbox" id="music-toggle" checked> Музыка
+			</label>
+		</div>
+	</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+
+</div>
+
+
+<script src="{% static 'games/js/tetris.js' %}"></script>
+{% endblock %}
